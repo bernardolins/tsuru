@@ -1433,7 +1433,7 @@ func (s *S) TestProvisionerExecuteCommandNoUnits(c *check.C) {
 		var config docker.Config
 		json.Unmarshal(data, &config)
 		sort.Strings(config.Env)
-		c.Assert(config.Env, check.DeepEquals, []string{"ENV=OK", "PORT=8888", "TSURU_HOST=", "TSURU_PROCESSNAME=", "port=8888"})
+		c.Assert(config.Env, check.DeepEquals, []string{"ENV=OK", "PORT=8888", "TSURU_CONTAINERISOLATED=true", "TSURU_HOST=", "TSURU_PROCESSNAME=", "port=8888"})
 		var createOpts docker.CreateContainerOptions
 		json.Unmarshal(data, &createOpts)
 		c.Assert(createOpts.HostConfig, check.NotNil)

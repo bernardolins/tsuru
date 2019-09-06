@@ -324,6 +324,7 @@ func (p *dockerProvisioner) runCommandInContainer(image string, app provision.Ap
 	for _, e := range provision.EnvsForApp(app, "", false) {
 		envs = append(envs, fmt.Sprintf("%s=%s", e.Name, e.Value))
 	}
+	envs = append(envs, "TSURU_CONTAINERISOLATED=true")
 	labelSet, err := provision.ServiceLabels(provision.ServiceLabelsOpts{
 		App: app,
 		ServiceLabelExtendedOpts: provision.ServiceLabelExtendedOpts{
